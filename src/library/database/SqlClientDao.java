@@ -14,7 +14,7 @@ public class SqlClientDao implements ClientDao{
     private final Connection connection;
 
     @Override
-    public Client read(Integer id) throws SQLException {
+    public Client get(Integer id) throws SQLException {
 
         String sql = "SELECT * FROM Client WHERE ID = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -22,6 +22,23 @@ public class SqlClientDao implements ClientDao{
         statement.setInt(1,id);
 
         ResultSet result = statement.executeQuery();
+
+        return getResult(result);
+    }
+
+    @Override
+    public Client get(String login) throws SQLException {
+        String sql = "SELECT * FROM Client WHERE Login = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        statement.setString(1,login);
+
+        ResultSet result = statement.executeQuery();
+
+        return getResult(result);
+    }
+
+    public Client getResult(ResultSet result) throws SQLException {
         if(result.next()){
             Client client = new Client();
 
@@ -34,7 +51,6 @@ public class SqlClientDao implements ClientDao{
         }else {
             return null;
         }
-
     }
 
     @Override

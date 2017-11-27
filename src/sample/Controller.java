@@ -2,11 +2,13 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import library.classes.Client;
 import library.database.ClientDao;
 import library.database.DaoFactory;
+import library.database.Select;
 import library.database.SqlDaoFactory;
 
 import java.sql.Connection;
@@ -23,8 +25,8 @@ public class Controller {
     private TextField login;
     @FXML
     private TextField pass;
-
-    private DaoFactory factory = new SqlDaoFactory();
+    @FXML
+    private Label wrong;
 
     private Registration registration = new Registration();
 
@@ -34,23 +36,23 @@ public class Controller {
 
     @FXML
     public void login(){
-        Locale.setDefault(Locale.ENGLISH);
-        try (Connection connection = factory.getConnection()){
-            ClientDao clientDao = factory.getClient(connection);
-            List<Client> clients = clientDao.getAll();
-            for(int i = 0; i < clients.size(); i++) {
-                if (login.getText().equals(clients.get(i).getLogin())){
-                    Stage stage = new Stage();
-                    client = clients.get(i);
-                    try {
-                        cabinet.start(stage);
-                    }catch (Exception e1){
-                        e1.printStackTrace();
-                    }
+        client = Select.getClient(login.getText());
+        if (client != null) {
+            if(client.getPass().equals(pass.getText())) {
+                Stage stage = new Stage();
+                try {
+                    cabinet.start(stage);
+                    Main.end();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+            }else{
+                wrong.setText("Incorrect password");
+                wrong.setVisible(true);
             }
-        }catch (Exception e){
-            e.printStackTrace();
+        }else {
+            wrong.setText("Invalid login");
+            wrong.setVisible(true);
         }
     }
 

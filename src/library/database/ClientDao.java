@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface ClientDao {
 
-    Client read(Integer id) throws SQLException;
+    Client get(Integer id) throws SQLException;
+
+    Client get(String name) throws SQLException;
 
     Client create();
 

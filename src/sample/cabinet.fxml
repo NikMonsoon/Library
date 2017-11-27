@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="sample.Cabinet">
    <children>
       <SplitPane dividerPositions="0.27424749163879597" layoutX="190.0" layoutY="70.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -51,7 +51,7 @@
                               <Font name="Arial" size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="204.0" text="Label" GridPane.columnIndex="1">
+                        <Label fx:id="log" alignment="CENTER" prefHeight="21.0" prefWidth="204.0" text="Label" GridPane.columnIndex="1">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>

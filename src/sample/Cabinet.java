@@ -14,7 +14,7 @@ public class Cabinet extends Application {
 
 
     @FXML
-    private Label label;
+    private Label log;
 
     Client client = Controller.client;
 
@@ -25,6 +25,7 @@ public class Cabinet extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        //log.setText(client.getLogin());
     }
 
 /*
