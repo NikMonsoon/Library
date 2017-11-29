@@ -1,6 +1,6 @@
-package library.database;
+package model.database;
 
-import library.classes.Client;
+import model.Client;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

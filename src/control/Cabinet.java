@@ -1,4 +1,4 @@
-package sample;
+package control;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import library.classes.Client;
+import model.Client;
 
 
 public class Cabinet extends Application {
@@ -20,7 +20,7 @@ public class Cabinet extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("cabinet.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/cabinet.fxml"));
         primaryStage.setTitle("Личный кабинет");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));

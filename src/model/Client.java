@@ -1,4 +1,4 @@
-package library.classes;
+package model;
 
 public class Client {
 

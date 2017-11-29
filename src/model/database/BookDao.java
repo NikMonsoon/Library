@@ -1,6 +1,6 @@
-package library.database;
+package model.database;
 
-import library.classes.Book;
+import model.Book;
 
 import java.sql.SQLException;
 import java.util.List;

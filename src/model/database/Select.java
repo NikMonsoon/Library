@@ -1,7 +1,6 @@
-package library.database;
+package model.database;
 
-import javafx.stage.Stage;
-import library.classes.Client;
+import model.Client;
 
 import java.sql.Connection;
 import java.util.List;

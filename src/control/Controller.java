@@ -1,19 +1,12 @@
-package sample;
+package control;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import library.classes.Client;
-import library.database.ClientDao;
-import library.database.DaoFactory;
-import library.database.Select;
-import library.database.SqlDaoFactory;
-
-import java.sql.Connection;
-import java.util.List;
-import java.util.Locale;
+import model.Client;
+import model.database.Select;
 
 public class Controller {
 
