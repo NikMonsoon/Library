@@ -6,27 +6,27 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class Main /*extends Application */{
 
-    private static boolean life = true;
 
-    @Override
+    public static void main(String[] args) {
+
+    }
+
+
+    //Пока отложим вывод в формы и сделаем консольный интерфейс. Позже уже пойдем во фронт
+    /*@Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../view/sample.fxml"));
         primaryStage.setTitle("Логин");
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        if(!life){
-            primaryStage.close();
-        }
-    }
-
-    public static void end(){
-        life = false;
     }
 
     public static void main(String[] args) {
         launch(args);
-    }
+    }*/
+
+
 }

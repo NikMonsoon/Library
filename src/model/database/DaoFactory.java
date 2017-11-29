@@ -1,16 +1,11 @@
 package model.database;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 public interface DaoFactory {
 
-    Connection getConnection() throws SQLException;
+    boolean getConnecting();
 
-    ClientDao getClient(Connection connection);
+    String getConnectException();
 
-    BookDao getBook(Connection connection);
-
-    AuthorDao getAuthor(Connection connection);
+    SqlClientDao getClient();
 
 }

@@ -2,19 +2,20 @@ package model.database;
 
 import model.Book;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface BookDao {
 
-    Book read(Integer id);
+    Book get(Integer id);
 
-    Book create();
+    Book get(String name);
+
+    boolean create(Book book);
 
     void update(Book book);
 
     void delete(Integer id);
 
-    List<Book> getAll() throws SQLException;
+    List<Book> getAll();
 
 }

@@ -1,30 +1,13 @@
 package model;
 
-public class Author {
+public interface Author {
 
-    private Integer id;
-    private String name;
+    void setId(Integer id);
 
-    public Author(){}
+    Integer getId();
 
-    public Author(Integer id, String name){
-        this.id = id;
-        this. name = name;
-    }
+    void setName(String name);
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    String getName();
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
 }

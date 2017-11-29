@@ -1,50 +1,21 @@
 package model;
 
-public class Book {
+public interface Book {
 
-    private Integer id;
-    private String title;
-    private Integer year;
-    private String genre;
+    public Integer getId();
 
-    public Book(){}
+    public void setId(Integer id);
 
-    public Book(Integer id, String title,Integer year, String genre){
-        this.id = id;
-        this.title = title;
-        this.year = year;
-        this.genre = genre;
-    }
+    public Integer getYear();
 
-    public Integer getId() {
-        return id;
-    }
+    public void setYear(Integer year);
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public String getGenre();
 
-    public Integer getYear() {
-        return year;
-    }
+    public void setGenre(String genre);
 
-    public void setYear(Integer year) {
-        this.year = year;
-    }
+    public String getTitle();
 
-    public String getGenre() {
-        return genre;
-    }
+    public void setTitle(String title);
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }

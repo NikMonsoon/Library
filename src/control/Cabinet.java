@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import model.Client;
+import model.ClientImpl;
 
 
 public class Cabinet extends Application {
@@ -16,7 +16,7 @@ public class Cabinet extends Application {
     @FXML
     private Label log;
 
-    Client client = Controller.client;
+    ClientImpl client = Controller.client;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -25,11 +25,6 @@ public class Cabinet extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        //log.setText(client.getLogin());
     }
 
-/*
-    public Cabinet(String name){
-        this.label.setText(name);
-    }*/
 }

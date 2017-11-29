@@ -1,46 +1,103 @@
 package model.database;
 
-import model.Client;
+import model.ClientImpl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class SqlClientDao implements ClientDao{
 
-    private final Connection connection;
+    private String url = "jdbc:oracle:thin:@localhost:1521:XE";
+    private String name = "GAV_6308";
+    private String password = "qwerty";
+    private static String driver = "oracle.jdbc.driver.OracleDriver";
 
-    @Override
-    public Client get(Integer id) throws SQLException {
+    private static Connection connection = null;
+
+    public ClientImpl get(Integer id){
 
         String sql = "SELECT * FROM Client WHERE ID = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
+        try {
+            Locale.setDefault(Locale.ENGLISH);
+            Class.forName(driver);
+            connection = DriverManager.getConnection(url, name, password);
 
-        statement.setInt(1,id);
+            PreparedStatement statement = connection.prepareStatement(sql);
 
-        ResultSet result = statement.executeQuery();
+            statement.setInt(1, id);
 
-        return getResult(result);
+            ResultSet result = statement.executeQuery();
+
+            return getResult(result);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ClientImpl get(String login){
+        String sql = "SELECT * FROM Client WHERE Login = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setString(1, login);
+
+            ResultSet result = statement.executeQuery();
+
+            return getResult(result);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
+    @Override
+    public boolean create(ClientImpl client) {
+        return false;
     }
 
     @Override
-    public Client get(String login) throws SQLException {
-        String sql = "SELECT * FROM Client WHERE Login = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
+    public void update(ClientImpl client) {
 
-        statement.setString(1,login);
-
-        ResultSet result = statement.executeQuery();
-
-        return getResult(result);
     }
 
-    public Client getResult(ResultSet result) throws SQLException {
+    @Override
+    public void delete(Integer id) {
+
+    }
+
+    @Override
+    public List<ClientImpl> getAll(){
+        String sql = "SELECT * FROM Client";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+
+            List<ClientImpl> clients = new ArrayList<ClientImpl>();
+            while (result.next()) {
+                ClientImpl client = new ClientImpl();
+
+                client.setId(result.getInt("ID"));
+                client.setLogin(result.getString("Login"));
+                client.setPass(result.getString("Pass"));
+                client.setPrivilege(result.getString("Privilege"));
+
+                clients.add(client);
+            }
+            return clients;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static ClientImpl getResult(ResultSet result) throws SQLException {
         if(result.next()){
-            Client client = new Client();
+            ClientImpl client = new ClientImpl();
 
             client.setId(result.getInt("ID"));
             client.setLogin(result.getString("Login"));
@@ -53,41 +110,40 @@ public class SqlClientDao implements ClientDao{
         }
     }
 
-    @Override
-    public Client create() {
+    /*private static DaoFactory factory = new SqlDaoFactoryImpl();
+
+    public static ClientImpl getClient(int id){
+        Locale.setDefault(Locale.ENGLISH);
+        try (Connection connection = factory.getConnection()){
+            ClientDao clientDao = factory.getClient(connection);
+            return clientDao.get(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return null;
     }
 
-    @Override
-    public void update(Client client) {
-
-    }
-
-    @Override
-    public void delete(Integer id) {
-
-    }
-
-    @Override
-    public List<Client> getAll() throws SQLException {
-        String sql = "SELECT * FROM Client";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet result = statement.executeQuery();
-
-        List<Client> clients = new ArrayList<Client>();
-        while(result.next()){
-            Client client = new Client();
-
-            client.setId(result.getInt("ID"));
-            client.setLogin(result.getString("Login"));
-            client.setPass(result.getString("Pass"));
-            client.setPrivilege(result.getString("Privilege"));
-
-            clients.add(client);
+    public static ClientImpl getClient(String login){
+        Locale.setDefault(Locale.ENGLISH);
+        try (Connection connection = factory.getConnection()){
+            ClientDao clientDao = factory.getClient(connection);
+            return clientDao.get(login);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return clients;
+        return null;
     }
-    public SqlClientDao(Connection connection) {
-        this.connection = connection;
-    }
+
+    public static List<ClientImpl> getClients(){
+        Locale.setDefault(Locale.ENGLISH);
+        try (Connection connection = factory.getConnection()){
+            ClientDao clientDao = factory.getClient(connection);
+            return clientDao.getAll();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }*/
+
+    public SqlClientDao(){}
 }

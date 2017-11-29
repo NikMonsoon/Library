@@ -1,6 +1,6 @@
 package model.database;
 
-public interface SqlDaoFactory extends DaoFactory {
+public interface XmlDaoFactory extends DaoFactory {
 
     @Override
     boolean getConnecting();

@@ -5,8 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Client;
-import model.database.Select;
+import model.ClientImpl;
 
 public class Controller {
 
@@ -25,7 +24,7 @@ public class Controller {
 
     private Cabinet cabinet = new Cabinet();
 
-    public static Client client = new Client();
+    public static ClientImpl client = new ClientImpl();
 
     @FXML
     public void login(){
@@ -35,7 +34,7 @@ public class Controller {
                 Stage stage = new Stage();
                 try {
                     cabinet.start(stage);
-                    Main.end();
+                    //Main.end();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

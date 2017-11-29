@@ -1,22 +1,21 @@
 package model.database;
 
-import model.Client;
+import model.ClientImpl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface ClientDao {
 
-    Client get(Integer id) throws SQLException;
+    ClientImpl get(Integer id);
 
-    Client get(String name) throws SQLException;
+    ClientImpl get(String login);
 
-    Client create();
+    boolean create(ClientImpl client);
 
-    void update(Client client);
+    void update(ClientImpl client);
 
     void delete(Integer id);
 
-    List<Client> getAll() throws SQLException;
+    List<ClientImpl> getAll();
 
 }

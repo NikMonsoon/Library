@@ -1,54 +1,21 @@
 package model;
 
-public class Client {
+public interface Client {
 
-    //Обычный класс клиента для описания его структуры и работы с данными, полученными из базы
+    public Integer getId();
 
-    private Integer id;
-    private String login;
-    private String pass;
-    private String privilege;
+    public String getLogin();
 
-    public Client(){ }
+    public String getPass();
 
-    public Client( Integer id, String login, String pass, String privilege){
+    public String getPrivilege();
 
-        this.id = id;
-        this.login = login;
-        this.pass = pass;
-        this.privilege = privilege;
-    }
+    public void setId(Integer id);
 
-    public Integer getId() {
-        return id;
-    }
+    public void setLogin(String login);
 
-    public String getLogin() {
-        return login;
-    }
+    public void setPass(String pass);
 
-    public String getPass() {
-        return pass;
-    }
-
-    public String getPrivilege() {
-        return privilege;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public void setPrivilege(String privilege) {
-        this.privilege = privilege;
-    }
+    public void setPrivilege(String privilege);
 
 }
