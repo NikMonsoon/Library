@@ -1,13 +1,14 @@
-package model.database;
+package model.database.sql;
 
 import model.ClientImpl;
+import model.database.ClientDao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SqlClientDao implements ClientDao{
+public class SqlClientDao implements ClientDao {
 
     private String url = "jdbc:oracle:thin:@localhost:1521:XE";
     private String name = "GAV_6308";
@@ -40,6 +41,10 @@ public class SqlClientDao implements ClientDao{
     public ClientImpl get(String login){
         String sql = "SELECT * FROM Client WHERE Login = ?";
         try {
+            Locale.setDefault(Locale.ENGLISH);
+            Class.forName(driver);
+            connection = DriverManager.getConnection(url, name, password);
+
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setString(1, login);

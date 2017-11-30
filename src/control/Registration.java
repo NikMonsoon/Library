@@ -1,3 +1,4 @@
+/*
 package control;
 
 import javafx.application.Application;
@@ -22,3 +23,4 @@ public class Registration extends Application{
     }
 
 }
+*/

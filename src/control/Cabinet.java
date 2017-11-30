@@ -1,4 +1,4 @@
-package control;
+/*package control;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -27,4 +27,4 @@ public class Cabinet extends Application {
         primaryStage.show();
     }
 
-}
+}*/

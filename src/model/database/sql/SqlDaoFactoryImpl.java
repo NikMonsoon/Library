@@ -1,6 +1,7 @@
-package model.database;
+package model.database.sql;
 
 import java.sql.DriverManager;
+import java.util.Locale;
 
 public class SqlDaoFactoryImpl implements SqlDaoFactory{
 
@@ -11,6 +12,7 @@ public class SqlDaoFactoryImpl implements SqlDaoFactory{
     @Override
     public boolean getConnecting(){
         try {
+            Locale.setDefault(Locale.ENGLISH);
             DriverManager.getConnection(url, name, password);
             return true;
         }catch (Exception e){
@@ -21,6 +23,7 @@ public class SqlDaoFactoryImpl implements SqlDaoFactory{
     @Override
     public String getConnectException() {
         try {
+            Locale.setDefault(Locale.ENGLISH);
             DriverManager.getConnection(url, name, password);
             return "Connected by second try";
         }catch (Exception e){
@@ -29,8 +32,17 @@ public class SqlDaoFactoryImpl implements SqlDaoFactory{
     }
 
     @Override
-    public SqlClientDao getClient() {
+    public SqlClientDao client() {
         return new SqlClientDao();
     }
 
+    @Override
+    public SqlAuthorDao author() {
+        return new SqlAuthorDao();
+    }
+
+    @Override
+    public SqlBookDao book() {
+        return new SqlBookDao();
+    }
 }

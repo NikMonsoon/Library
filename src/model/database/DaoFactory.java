@@ -2,10 +2,10 @@ package model.database;
 
 public interface DaoFactory {
 
-    boolean getConnecting();
+    ClientDao client() throws Exception;
 
-    String getConnectException();
+    BookDao book() throws Exception;
 
-    SqlClientDao getClient();
+    AuthorDao author() throws Exception;
 
 }

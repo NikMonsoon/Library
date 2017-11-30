@@ -4,7 +4,7 @@ import model.ClientImpl;
 
 import java.util.List;
 
-public interface ClientDao {
+public interface ClientDao{
 
     ClientImpl get(Integer id);
 
