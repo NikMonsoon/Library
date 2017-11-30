@@ -17,14 +17,20 @@ public class SqlClientDao implements ClientDao {
 
     private static Connection connection = null;
 
-    public ClientImpl get(Integer id){
-
-        String sql = "SELECT * FROM Client WHERE ID = ?";
+    SqlClientDao(){
         try {
             Locale.setDefault(Locale.ENGLISH);
             Class.forName(driver);
             connection = DriverManager.getConnection(url, name, password);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
+    public ClientImpl get(Integer id){
+
+        String sql = "SELECT * FROM Client WHERE ID = ?";
+        try {
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setInt(1, id);
@@ -41,10 +47,6 @@ public class SqlClientDao implements ClientDao {
     public ClientImpl get(String login){
         String sql = "SELECT * FROM Client WHERE Login = ?";
         try {
-            Locale.setDefault(Locale.ENGLISH);
-            Class.forName(driver);
-            connection = DriverManager.getConnection(url, name, password);
-
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setString(1, login);
@@ -58,7 +60,17 @@ public class SqlClientDao implements ClientDao {
         return null;
     }
 
+    @Override
+    public void getBook(Integer clientID, Integer bookID) {
+        String sql = "INSERT INTO Client_book (Client_ID, Book_ID) VALUES (" + clientID + ", " + bookID + ")";
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeQuery(sql);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
+    }
 
     @Override
     public boolean create(ClientImpl client) {
@@ -82,7 +94,7 @@ public class SqlClientDao implements ClientDao {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
 
-            List<ClientImpl> clients = new ArrayList<ClientImpl>();
+            List<ClientImpl> clients = new ArrayList<>();
             while (result.next()) {
                 ClientImpl client = new ClientImpl();
 
@@ -93,6 +105,7 @@ public class SqlClientDao implements ClientDao {
 
                 clients.add(client);
             }
+
             return clients;
         }catch (Exception e){
             e.printStackTrace();
@@ -108,6 +121,8 @@ public class SqlClientDao implements ClientDao {
             client.setLogin(result.getString("Login"));
             client.setPass(result.getString("Pass"));
             client.setPrivilege(result.getString("Privilege"));
+
+            connection.close();
 
             return client;
         }else {
@@ -149,6 +164,4 @@ public class SqlClientDao implements ClientDao {
         }
         return null;
     }*/
-
-    public SqlClientDao(){}
 }

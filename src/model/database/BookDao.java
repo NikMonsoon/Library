@@ -1,21 +1,24 @@
 package model.database;
 
 import model.Book;
+import model.BookImpl;
 
 import java.util.List;
 
 public interface BookDao {
 
-    Book get(Integer id);
+    BookImpl get(Integer id);
 
-    Book get(String name);
+    BookImpl get(String title);
 
-    boolean create(Book book);
+    boolean create(BookImpl book);
 
-    void update(Book book);
+    void update(BookImpl book);
 
     void delete(Integer id);
 
-    List<Book> getAll();
+    List<BookImpl> getByClientID(Integer id);
+
+    List<BookImpl> getAll();
 
 }

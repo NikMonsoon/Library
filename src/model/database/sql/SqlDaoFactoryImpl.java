@@ -1,6 +1,7 @@
 package model.database.sql;
 
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Locale;
 
 public class SqlDaoFactoryImpl implements SqlDaoFactory{
@@ -42,7 +43,7 @@ public class SqlDaoFactoryImpl implements SqlDaoFactory{
     }
 
     @Override
-    public SqlBookDao book() {
+    public SqlBookDao book(){
         return new SqlBookDao();
     }
 }

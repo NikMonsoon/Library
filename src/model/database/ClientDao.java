@@ -10,6 +10,8 @@ public interface ClientDao{
 
     ClientImpl get(String login);
 
+    void getBook(Integer clientID, Integer bookID);
+
     boolean create(ClientImpl client);
 
     void update(ClientImpl client);
